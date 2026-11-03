@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Categorías{% endblock %}
+{% block content %}<div class="d-flex justify-content-between align-items-center mb-3"><div><h1 class="h2">Categorías</h1><p class="text-secondary">Clasifica los anuncios del sistema.</p></div><a class="btn btn-primary" href="{{ url_for('categorias.nueva_categoria') }}">+ Nueva categoría</a></div>
+<div class="table-responsive card border-0 shadow-sm"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th>Nombre</th><th>Descripción</th><th>Anuncios</th><th>Acciones</th></tr></thead><tbody>
+{% for c in categorias %}<tr><td class="fw-semibold">{{ c.nombre }}</td><td>{{ c.descripcion or '—' }}</td><td>{{ c.total_anuncios }}</td><td class="text-nowrap"><a class="btn btn-sm btn-outline-primary" href="{{ url_for('categorias.editar_categoria', categoria_id=c.id) }}">Editar</a> <form class="d-inline" method="post" action="{{ url_for('categorias.eliminar_categoria', categoria_id=c.id) }}" onsubmit="return confirm('¿Eliminar esta categoría?')"><button class="btn btn-sm btn-outline-danger">Eliminar</button></form></td></tr>
+{% else %}<tr><td colspan="4" class="text-center py-4">No hay categorías.</td></tr>{% endfor %}
+</tbody></table></div>{% endblock %}

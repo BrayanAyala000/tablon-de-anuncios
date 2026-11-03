@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}Usuarios{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3"><div><h1 class="h2">Usuarios</h1><p class="text-secondary">Administración de cuentas registradas.</p></div><a class="btn btn-primary" href="{{ url_for('usuarios.nuevo_usuario') }}">+ Nuevo usuario</a></div>
+<div class="table-responsive card border-0 shadow-sm"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th>Nombre</th><th>Usuario</th><th>Correo</th><th>Rol</th><th>Acciones</th></tr></thead><tbody>
+{% for u in usuarios %}<tr><td>{{ u.nombre }}</td><td>{{ u.username }}</td><td>{{ u.email }}</td><td><span class="badge text-bg-secondary">{{ u.rol }}</span></td><td class="text-nowrap"><a class="btn btn-sm btn-outline-primary" href="{{ url_for('usuarios.editar_usuario', user_id=u.id) }}">Editar</a> <form class="d-inline" method="post" action="{{ url_for('usuarios.eliminar_usuario', user_id=u.id) }}" onsubmit="return confirm('¿Eliminar este usuario y sus anuncios?')"><button class="btn btn-sm btn-outline-danger">Eliminar</button></form></td></tr>
+{% else %}<tr><td colspan="5" class="text-center py-4">No hay usuarios registrados.</td></tr>{% endfor %}
+</tbody></table></div>{% endblock %}

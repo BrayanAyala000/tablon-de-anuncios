@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}{{ 'Editar' if anuncio else 'Nuevo' }} anuncio{% endblock %}
+{% block content %}<div class="row justify-content-center"><div class="col-lg-9"><h1 class="h2 mb-4">{{ 'Editar anuncio' if anuncio else 'Publicar anuncio' }}</h1>
+<form method="post" class="card card-body border-0 shadow-sm">
+<div class="mb-3"><label class="form-label">Título *</label><input class="form-control" name="titulo" maxlength="160" required value="{{ anuncio.titulo if anuncio else '' }}"></div>
+<div class="mb-3"><label class="form-label">Contenido *</label><textarea class="form-control" name="contenido" rows="7" required>{{ anuncio.contenido if anuncio else '' }}</textarea></div>
+<div class="row"><div class="col-md-6 mb-3"><label class="form-label">Categoría *</label><select class="form-select" name="categoria_id" required><option value="">Selecciona una categoría</option>{% for c in categorias %}<option value="{{ c.id }}" {{ 'selected' if anuncio and anuncio.categoria_id == c.id else '' }}>{{ c.nombre }}</option>{% endfor %}</select></div><div class="col-md-6 mb-3"><label class="form-label">Ubicación</label><input class="form-control" name="ubicacion" value="{{ anuncio.ubicacion if anuncio else '' }}" placeholder="Ej. Bloque A, oficina 3"></div></div>
+<div class="mb-3"><label class="form-label">Estado</label><select class="form-select" name="estado"><option value="publicado" {{ 'selected' if not anuncio or anuncio.estado=='publicado' else '' }}>Publicado</option><option value="borrador" {{ 'selected' if anuncio and anuncio.estado=='borrador' else '' }}>Borrador</option></select></div>
+<div class="d-flex gap-2"><button class="btn btn-primary">Guardar anuncio</button><a class="btn btn-outline-secondary" href="{{ url_for('anuncios.lista_anuncios') }}">Cancelar</a></div>
+</form></div></div>{% endblock %}

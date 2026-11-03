@@ -1,0 +1,11 @@
+:root { --navy: #17324d; --blue: #245b8f; --pale: #eaf2f8; }
+body { background: #f6f8fb; color: #253445; }
+.site-header { background: var(--navy); box-shadow: 0 2px 10px #10243b22; }
+.site-footer { background: #e9eef4; color: #46586b; border-top: 1px solid #d9e1e9; }
+.hero-panel { color: #fff; background: linear-gradient(125deg, #17324d, #2d6b9f); box-shadow: 0 8px 24px #17324d22; }
+.announcement-card { transition: transform .15s ease, box-shadow .15s ease; }
+.announcement-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px #17324d18 !important; }
+.category-badge { background: var(--pale); color: var(--blue); }
+.announcement-content { white-space: pre-wrap; line-height: 1.8; overflow-wrap: anywhere; }
+.card { border-radius: .85rem; }
+.btn { border-radius: .55rem; }
